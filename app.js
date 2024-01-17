@@ -1,10 +1,11 @@
 alert('Welcome to the game of the secret number');
-let secretNumber = parseInt(Math.random() * 100 + 1);
+let maxNumber = 100;
+let secretNumber = parseInt(Math.random() * maxNumber + 1);
 let guessNumber,
   tries = 1;
 
 while (secretNumber != guessNumber) {
-  guessNumber = prompt('Type a number betwen 1 and 100:');
+  guessNumber = prompt(`Type a number betwen 1 and ${maxNumber}:`);
   if (secretNumber == guessNumber) {
     break;
   } else {
