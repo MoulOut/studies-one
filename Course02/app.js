@@ -45,7 +45,7 @@ function verifyTry() {
   let tryNumber = document.querySelector('input').value;
   if (tryNumber == secretNumber) {
     showTextOnScreen(`Congratulations!`, 'h1');
-    showTextOnScreen(`You discovered the Secret Number!.Tries: ${tries}`, 'p');
+    showTextOnScreen(`You discovered the Secret Number!.<br>Tries: ${tries}`, 'p');
     toggleNewGame();
     return;
   } else if (tryNumber > secretNumber) {
