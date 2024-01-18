@@ -6,29 +6,47 @@ function showTextOnScreen(text, tag) {
   field.innerHTML = text;
 }
 
-showTextOnScreen('Secret Number Game', 'h1');
-showTextOnScreen('Choose a number between 1 and 10:', 'p');
+function showInitialMessage() {
+  showTextOnScreen('Secret Number Game', 'h1');
+  showTextOnScreen('Choose a number between 1 and 10:', 'p');
+}
+
+showInitialMessage();
 
 function generateSecretNumber() {
   return parseInt(Math.random() * 10 + 1);
 }
 
 function newGame() {
-  alert('The secret number is changed.');
   tries = 1;
   secretNumber = generateSecretNumber();
+  showInitialMessage();
+  cleanField();
+  toggleNewGame();
 }
 
 function verifyTry() {
   let tryNumber = document.querySelector('input').value;
   if (tryNumber == secretNumber) {
-    alert(`Awesome you guessed it right. Number of tries: ${tries}`);
-    return alert('Click on New Game to change the number!')
+    showTextOnScreen(`Congratulations!`, 'h1');
+    showTextOnScreen(`You discovered the Secret Number!.Tries: ${tries}`, 'p');
+    toggleNewGame();
+    return;
   } else if (tryNumber > secretNumber) {
-    alert('Your guess is bigger than the secret number.');
+    showTextOnScreen('The secret number is lower than your guess.', 'p');
   } else {
-    alert('Your guess is lower than the secret number.');
+    showTextOnScreen('The secret number is bigger than your guess.', 'p');
   }
   tries++;
-  return alert('Try again');
+  cleanField(tryNumber);
+  return showTextOnScreen('Try again!', 'h1');
+}
+
+function cleanField() {
+  tryNumber = document.querySelector('input');
+  tryNumber.value = '';
+}
+
+function toggleNewGame() {
+  document.querySelector('button#reiniciar').toggleAttribute('disabled');
 }
