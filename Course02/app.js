@@ -1,20 +1,36 @@
+let sortedNumbersList = [];
+let limitNumber = 100;
 let secretNumber = generateSecretNumber();
 let tries = 1;
 
 function showTextOnScreen(text, tag) {
   let field = document.querySelector(tag);
   field.innerHTML = text;
+  responsiveVoice.speak(text, 'Brazilian Portuguese Female', { rate: 1.2 });
 }
 
 function showInitialMessage() {
   showTextOnScreen('Secret Number Game', 'h1');
-  showTextOnScreen('Choose a number between 1 and 10:', 'p');
+  showTextOnScreen(`Choose a number between 1 and ${limitNumber}:`, 'p');
 }
 
 showInitialMessage();
 
 function generateSecretNumber() {
-  return parseInt(Math.random() * 10 + 1);
+  let choosenNumber = parseInt(Math.random() * limitNumber + 1);
+  let qtOfElementsOnList = sortedNumbersList.length;
+
+  if (qtOfElementsOnList == limitNumber) {
+    sortedNumbersList = [];
+  }
+
+  if (sortedNumbersList.includes(choosenNumber)) {
+    return generateSecretNumber();
+  } else {
+    sortedNumbersList.push(choosenNumber);
+    console.log(sortedNumbersList);
+    return choosenNumber;
+  }
 }
 
 function newGame() {
