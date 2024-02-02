@@ -6,3 +6,8 @@ function buttonChange() {
   document.querySelector('button#yes2').innerHTML = 'Yes!';
   document.querySelector('button#yes2').removeAttribute('disabled');
 }
+
+function changeBack(){
+  document.querySelector('button#yes2').innerHTML = 'No';
+  document.querySelector('button#yes2').toggleAttribute('disabled');
+}
